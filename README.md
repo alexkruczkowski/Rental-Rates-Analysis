@@ -1,4 +1,4 @@
-Rental-Rates-Analysis
+# Rental-Rates-Analysis
 Analysis on rental rates - forecasting future prices and examining seasonality to determine the best time to rent.
 
 💾 Data
