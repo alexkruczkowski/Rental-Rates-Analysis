@@ -1,8 +1,8 @@
 # Rental-Rates-Analysis
 Analysis on rental rates - forecasting future prices and examining seasonality to determine the best time to rent.
 
-## Data
-The U.S. metro smoothed rental data is sourced from the Zillow and can be found here.
+## :cd: Data
+The U.S. metro smoothed rental data is sourced from the Zillow and can be found [here](https://www.zillow.com/research/data/).
 
 Data includes average monthly rental prices for 100 U.S. metropolitan areas beginning in 2014 and ending in October of 2020. Zillow is a real estate marketplace that is widely popular in the United States.
 
