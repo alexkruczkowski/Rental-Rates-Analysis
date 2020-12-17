@@ -1,6 +1,7 @@
 '''
 Process to analyze rental rates and determine when is the best time to rent and how long to rent for.
 '''
+from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 import warnings
@@ -111,6 +112,33 @@ def sarimax_summary(results: str):
     results.plot_diagnostics(figsize=(12, 6))
     plt.show()
 
+def check_mse(results: str, df: str):
+    """
+    Takes SARIMAX results and checks MSE and RMSE. 
+    This is to check how well the forecast worked. 
+    Parameters 
+    ----------
+    results : str
+        SARIMAX model results
+    df: str
+        pandas df for analysis
+    Returns
+    -------
+    Prints model mean squared error and root mean squared error for analysis. 
+    Examples
+    --------
+    """
+    pred = results.get_prediction(start=pd.to_datetime('2020-01-01'), dynamic=False)
+    y_forecast = list(pred.predicted_mean)
+    yt = df['2020-01-01':]
+    y_truth = yt['Value'].tolist()
+
+    mse = mean_squared_error(y_truth, y_forecast)
+    rmse = mean_squared_error(y_truth, y_forecast, squared=False)
+
+    print('The Mean Squared Error of our forecasts is {}'.format(round(mse, 2)))
+    print('The Root Mean Squared Error of our forecasts is {}'.format(round(rmse, 2)))
+
 def sarimax_forecast(results: str, df: str):
     """
     Takes SARIMAX results and generates forecast for next 24 months.
@@ -118,6 +146,8 @@ def sarimax_forecast(results: str, df: str):
     ----------
     results : str
         SARIMAX model results
+    df: str
+        pandas df for forecast
     Returns
     -------
     Prints SARIMAX model summary and returns graphical visualization of model. 

@@ -40,5 +40,8 @@ sresults = ra.sarimax_results(df_final)
 #summary of model results
 ra.sarimax_summary(sresults)
 
+#check model mse and rmse to help determine performance
+ra.check_mse(sresults, df_final)
+
 #final forecast for 24 periods or 2 years
 ra.sarimax_forecast(sresults, df_final)
